@@ -18,22 +18,20 @@ public class NotificationTrigger extends BroadcastReceiver {
 	private String message;
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		// Gets an instance of the NotificationManager service
+
 				NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
 				Intent resultIntent = new Intent(context, MainActivity.class);
 
-				PendingIntent resultPendingIntent = PendingIntent.getActivity( // atividade
-						context, // Contexto que vem do receive "MUITO IMPORTANTE"
-						0, // Parametro não usado
-						resultIntent, // Intent que lancará
+				PendingIntent resultPendingIntent = PendingIntent.getActivity(
+						context,
+						0,
+						resultIntent,
 						PendingIntent.FLAG_UPDATE_CURRENT
 						);
 		Bundle bundle = intent.getExtras();
 		try {
-			//receiveNumbers = intent.getExtras().get("phN").toString();
-			//this.title = intent.getStringExtra("tit");
-			//this.message = intent.getStringExtra("msg");
+
 			this.autor = bundle.getString("autor");
 			this.message = bundle.getString("msg");
 
@@ -43,7 +41,6 @@ public class NotificationTrigger extends BroadcastReceiver {
 		}
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 						context).setSmallIcon(R.drawable.ic_info)
-						// TODO passar por bundle
 						.setContentTitle(autor)
 						.setContentText(message);
 

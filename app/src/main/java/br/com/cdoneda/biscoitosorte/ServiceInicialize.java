@@ -9,9 +9,9 @@ public class ServiceInicialize extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		intent = new Intent(context, RecadosService.class);//explicita
+		intent = new Intent(context, BiscoitoService.class);//explicita
 		context.startService(intent);
-		Log.d("SERVICE_INIT","VAI PORRA");
+		Log.d("SERVICE_INIT","SERVICO BISCO DA SORTE INICIADO");
 	}
 	
 }

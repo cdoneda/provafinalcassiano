@@ -22,23 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public void Testa(View v) {
 
         Context contexto = getApplicationContext();
-        Intent objIntent = new Intent(contexto, RecadosService.class);
-        //objIntent.putExtras(bundle);
-//        contexto.sendBroadcast(objIntent);
-
+        Intent objIntent = new Intent(contexto, BiscoitoService.class);
         startService(objIntent);
-
-    }
-
-    public void InitService(View v) {
-
-
-        mService = new ServiceInicialize();
-        mIntentFilter = new IntentFilter();
-        mIntentFilter.addAction("android.intent.category.DEFAULT");
-        registerReceiver(mService, mIntentFilter);
-
-
 
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class RecadosService extends Service {
+public class BiscoitoService extends Service {
 
 	private Timer timerAtual = new Timer();
 	private TimerTask task;

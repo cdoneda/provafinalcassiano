@@ -42,7 +42,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="br.com.cdoneda.biscoitosorte.RecadosService" />
+        <service android:name="br.com.cdoneda.biscoitosorte.BiscoitoService" />
 
     </application>
 
