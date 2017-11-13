@@ -17,8 +17,6 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ServiceInicialize mService;
-    private IntentFilter mIntentFilter;
     private Mensagem m;
     TextView ta;
     TextView tm;
@@ -45,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
             m.setMensagem(getIntent().getExtras().getString("msg"));
             Log.d("AUTOR MAIN", m.getAutor());
             Log.d("MSG MAIN", m.getMensagem());
+            ta.setText(m.getAutor());
+            tm.setText(m.getMensagem());
 
         } catch (Exception e) {
             e.printStackTrace();
+            vaiWebService();
         }
-        vaiWebService();
-        ta.setText(m.getAutor());
-        tm.setText(m.getMensagem());
+
+
     }
 
     private void vaiWebService() {

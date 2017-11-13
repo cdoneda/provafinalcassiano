@@ -84,16 +84,21 @@ public class BiscoitoService extends Service {
 			msg = parser.fromJson(result,
 					new TypeToken<Mensagem>(){}.getType());
 
-			if(msg.getAutor()!=null){
-				Bundle bundle = new Bundle();
-				bundle.putString("autor", msg.getAutor());
-				bundle.putString("msg", msg.getMensagem());
-				Context contexto = getApplicationContext();
-				Intent objIntent = new Intent(contexto, NotificationTrigger.class);
-				objIntent.putExtras(bundle);
-				contexto.sendBroadcast(objIntent);
-			} else {
-				Log.d("AUTOR", "NULL");
+			try {
+				if (msg.getAutor() != null) {
+					Bundle bundle = new Bundle();
+					bundle.putString("autor", msg.getAutor());
+					bundle.putString("msg", msg.getMensagem());
+					Context contexto = getApplicationContext();
+					Intent objIntent = new Intent(contexto, NotificationTrigger.class);
+					objIntent.putExtras(bundle);
+					contexto.sendBroadcast(objIntent);
+				} else {
+					Log.d("AUTOR", "NULL");
+				}
+
+			} catch (Exception e){
+				e.printStackTrace();
 			}
 
 
