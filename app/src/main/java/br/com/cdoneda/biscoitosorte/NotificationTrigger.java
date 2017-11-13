@@ -14,53 +14,59 @@ import android.support.v4.app.NotificationCompat;
 
 public class NotificationTrigger extends BroadcastReceiver {
 
-	private String autor;
-	private String message;
-	@Override
-	public void onReceive(Context context, Intent intent) {
+    private String autor;
+    private String message;
 
-				NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+    @Override
+    public void onReceive(Context context, Intent intent) {
 
-				Intent resultIntent = new Intent(context, MainActivity.class);
+        NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
-				PendingIntent resultPendingIntent = PendingIntent.getActivity(
-						context,
-						0,
-						resultIntent,
-						PendingIntent.FLAG_UPDATE_CURRENT
-						);
-		Bundle bundle = intent.getExtras();
-		try {
+        Bundle bundle = intent.getExtras();
+        try {
 
-			this.autor = bundle.getString("autor");
-			this.message = bundle.getString("msg");
+            this.autor = bundle.getString("autor");
+            this.message = bundle.getString("msg");
 
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-						context).setSmallIcon(R.drawable.ic_info)
-						.setContentTitle(autor)
-						.setContentText(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+                context).setSmallIcon(R.drawable.ic_info)
+                .setContentTitle(autor)
+                .setContentText(message);
 
-				mBuilder.setContentIntent(resultPendingIntent);// Seta a intent que vai
-																// abrir
 
-				Notification n = mBuilder.build();
-				n.vibrate = new long[] { 150, 300, 150, 600, 10, 600 };//Vibrar
-				n.flags = Notification.FLAG_AUTO_CANCEL;
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("autor", autor);
+        bundle2.putString("msg", message);
+        Intent resultIntent= new Intent(context, MainActivity.class);
+        resultIntent.putExtras(bundle2);
 
-				mNotifyMgr.notify(1, n);
-				
-				
-				Uri som = Uri.parse("android.resource://br.com.cdoneda.biscoitosorte/" + R.raw.msg);
-				Ringtone toque = RingtoneManager.getRingtone(context, som);
-				toque.play();
-			
 
-	}
-	
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                resultIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        mBuilder.setContentIntent(resultPendingIntent);// Seta a intent que vai
+        // abrir
+
+        Notification n = mBuilder.build();
+        n.vibrate = new long[]{150, 300, 150, 600, 10, 600};//Vibrar
+        n.flags = Notification.FLAG_AUTO_CANCEL;
+
+        mNotifyMgr.notify(1, n);
+
+
+        Uri som = Uri.parse("android.resource://br.com.cdoneda.biscoitosorte/" + R.raw.msg);
+        Ringtone toque = RingtoneManager.getRingtone(context, som);
+        toque.play();
+
+
+    }
 
 
 }
