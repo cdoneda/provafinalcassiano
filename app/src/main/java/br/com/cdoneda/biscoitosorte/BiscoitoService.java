@@ -51,7 +51,7 @@ public class BiscoitoService extends Service {
 				});
 			}};
 
-		timerAtual.schedule(task, 300, 5000);
+		timerAtual.schedule(task, 300, 60000);
 
 
 		return(super.onStartCommand(intent, flags, startId));//Continua ciclo de vida do meu serviço
