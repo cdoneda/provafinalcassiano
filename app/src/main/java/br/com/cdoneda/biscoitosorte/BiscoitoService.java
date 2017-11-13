@@ -83,9 +83,6 @@ public class BiscoitoService extends Service {
 
 			msg = parser.fromJson(result,
 					new TypeToken<Mensagem>(){}.getType());
-			Log.d("MKAS", msg.toString());
-
-
 
 			if(msg.getAutor()!=null){
 				Bundle bundle = new Bundle();
